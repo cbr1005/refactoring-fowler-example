@@ -32,20 +32,38 @@ public class Customer {
 
 	public String statement() {
 
-		int frequentRenterPoints = 0;
-		Iterator<Rental> rentals = _rentals.iterator();
-		String result = "Rental Record for " + getName() + "\n";
-		while (rentals.hasNext()) {
-			Rental each = rentals.next();
+        int frequentRenterPoints = 0;
+        Iterator<Rental> rentals = _rentals.iterator();
+        String result = "Rental Record for " + getName() + "\n";
+        while (rentals.hasNext()) {
+            Rental each = rentals.next();
 
-			frequentRenterPoints += each.calculateFrequency();
-			result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.calculateAmount()) + "\n";
+            frequentRenterPoints += each.calculateFrequency();
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.calculateAmount()) + "\n";
 
-		}
-		result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-		return result;
-	}
+        }
+        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
+        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        return result;
+    }
+	
+	public String htmlStatement() {
+        int frequentRenterPoints = 0;
+        Iterator<Rental> rentals = _rentals.iterator();
+        String result = "<h1>Rental Record for " + getName() + "</h1>\n";
+        while (rentals.hasNext()) {
+
+            Rental each = rentals.next();
+            frequentRenterPoints += each.calculateFrequency();
+            result +=  each.getMovie().getTitle() + " : "
+                    + String.valueOf(each.calculateAmount()) + "<br>\n";
+        }
+
+        result += "<p>Amount owed is " + String.valueOf(getTotalCharge()) + "</p>\n";
+        result += "<p> You earned " + String.valueOf(frequentRenterPoints)
+                + " frequent renter points </p>";
+        return result;
+    }
 
 	public double getTotalCharge() {
 		double result = 0;

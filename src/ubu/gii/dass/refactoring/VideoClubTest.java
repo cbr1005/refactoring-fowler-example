@@ -35,7 +35,7 @@ public class VideoClubTest {
 	public void tearDown() throws Exception {}
 
 	@Test
-	public void testAlquiler() {
+	public void testStatement() {
 
 		Rental r1 = new Rental(m11, 5);
 		Rental r2 = new Rental(m0, 1);
@@ -51,6 +51,31 @@ public class VideoClubTest {
 				+ "\tSky Captain\t15.0\n" + "\tAccion Mutante\t2.0\n"
 				+ "\tHermano Oso\t12.0\n" + "Amount owed is 29.0\n"
 				+ "You earned 4 frequent renter points");
+
+		assertTrue("Calcula mal el alquiler", salidaEsperada.equals(salida));
+
+	}
+	
+	@Test
+	public void testhtmlStatement() {
+
+		Rental r1 = new Rental(m11, 5);
+		Rental r2 = new Rental(m0, 1);
+		Rental r3 = new Rental(m2, 10);
+
+		c1.addRental(r1);
+		c1.addRental(r2);
+		c1.addRental(r3);
+
+		String salida = c1.htmlStatement();
+
+		String salidaEsperada = new String("<h1>Rental Record for Manuel</h1>\n"
+				+ "Sky Captain : 15.0<br>\n" + "Accion Mutante : 2.0<br>\n"
+				+ "Hermano Oso : 12.0<br>\n" + "<p>Amount owed is 29.0</p>\n"
+				+ "<p> You earned 4 frequent renter points </p>");
+
+		System.out.println(salidaEsperada);
+		System.out.println(salida);
 
 		assertTrue("Calcula mal el alquiler", salidaEsperada.equals(salida));
 
