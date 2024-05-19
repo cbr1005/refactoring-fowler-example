@@ -29,23 +29,23 @@ public class Rental {
 	}
 
 	public double calculateAmount() {
-		double result = 0;
+		double resultados = 0;
 		switch (getMovie().getPriceCode()) {
 		case Movie.REGULAR:
-			result += 2;
+			resultados += 2;
 			if (getDaysRented() > 2)
-				result += (getDaysRented() - 2) * 1.5;
+				resultados += (getDaysRented() - 2) * 1.5;
 			break;
 		case Movie.NEW_RELEASE:
-			result += getDaysRented() * 3;
+			resultados += getDaysRented() * 3;
 			break;
 		case Movie.CHILDRENS:
-			result += 1.5;
+			resultados += 1.5;
 			if (getDaysRented() > 3)
-				result += (getDaysRented() - 3) * 1.5;
+				resultados += (getDaysRented() - 3) * 1.5;
 			break;
 		}
-		return result;
+		return resultados;
 	}
 
 	public int calculateFrequency() {

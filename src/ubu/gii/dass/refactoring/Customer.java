@@ -66,16 +66,16 @@ public class Customer {
     }
 
 	public double getTotalCharge() {
-		double result = 0;
+		double resultados = 0;
 
 		Iterator<Rental> rentals = _rentals.iterator();
 		while (rentals.hasNext()) {
 
 			Rental each = rentals.next();
-			result += each.calculateAmount();
+			resultados += each.calculateAmount();
 		}
 
-		return result;
+		return resultados;
 
 	}
 }
