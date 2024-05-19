@@ -42,12 +42,17 @@ public class Customer {
 			// show figures for this rental
 			result += "\t" + each.getMovie().getTitle() + "\t"
 					+ String.valueOf(each.calculateAmount(totalAmount)) + "\n";
-			totalAmount += each.calculateAmount(totalAmount);
+			totalAmount = getTotalCharge(totalAmount, each);
 		}
 		// add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
 		result += "You earned " + String.valueOf(frequentRenterPoints)
 				+ " frequent renter points";
 		return result;
+	}
+
+	public double getTotalCharge(double totalAmount, Rental each) {
+		totalAmount += each.calculateAmount(totalAmount);
+		return totalAmount;
 	}
 }
